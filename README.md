@@ -149,34 +149,6 @@ AI-Jobs-Market-EDA/
 
 ---
 
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/AI-Jobs-Market-EDA.git
-```
-
-Move into the project directory:
-
-```bash
-cd AI-Jobs-Market-EDA
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the project:
-
-```bash
-python eda_analysis.py
-```
-
----
-
 ## Future Improvements
 
 * Interactive dashboards using Power BI
