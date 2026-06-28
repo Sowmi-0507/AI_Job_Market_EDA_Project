@@ -48,7 +48,7 @@ print(data.shape)
 #detect outliers
 plt.boxplot(data["annual_salary_usd"])
 plt.title("Salary Outliers")
-plt.savefig("Salary Outliers.png")
+plt.savefig("images/Salary Outliers.png",dpi=300,bbox_inches="tight")
 plt.show()                     #found outliers using boxplot
 
 # # 1. calculate Q1 (25th percentile) and Q3 (75th percentile)
@@ -108,6 +108,12 @@ for col in numeric_cols:
 
     print(f"{col}: {outlier_count} outliers")
 
+    # Print salary outliers
+    if col == "annual_salary_usd":
+        salary_outliers = data.loc[(data[col] < lower_bound) | (data[col] > upper_bound), col]
+        print("\nSalary Outlier Values:")
+        print(salary_outliers)
+
     # Cap outliers
     data[col] = data[col].clip(
         lower=lower_bound,
@@ -115,6 +121,8 @@ for col in numeric_cols:
     )
 
 print("Outliers detected and capped.")
+
+
 
 #charts
 #How are salaries distributed?
@@ -124,7 +132,7 @@ plt.hist(data['annual_salary_usd'], bins=30)
 plt.title('Salary Distribution')
 plt.xlabel('Salary')
 plt.ylabel('Count')
-plt.savefig("Salary_Distribution.png")
+plt.savefig("images/Salary_Distribution.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 
@@ -133,7 +141,7 @@ data['years_of_experience'].value_counts().sort_index().plot(kind='bar')
 plt.title('Experience Level Distribution')
 plt.xlabel("Years of Experience")
 plt.ylabel("Count")
-plt.savefig("Experience_Level_Distribution.png")
+plt.savefig("images/Experience_Level_Distribution.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 #Which job roles are most common?
@@ -144,7 +152,7 @@ plt.title('Top 10 Job Titles')
 plt.xlabel("Job_title")
 plt.ylabel("Count")
 plt.tight_layout()
-plt.savefig("Job_Title_Distribution.png")
+plt.savefig("images/Job_Title_Distribution.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 
@@ -152,7 +160,7 @@ plt.show()
 print("Chart 4. Remote vs Non-Remote Jobs (Pie Chart)")
 data['is_remote_friendly'].replace({1:'Remote_Friendly', 0:'Not_Remote_Friendly'}).value_counts().plot(kind='pie',autopct='%1.1f%%')
 plt.title('Remote vs Non-Remote Jobs')
-plt.savefig("Remote vs Non-remote jobs.png")
+plt.savefig("images/Remote vs Non-remote jobs.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 #Does salary increase with experience?
@@ -161,7 +169,7 @@ plt.scatter(data['years_of_experience'],data['annual_salary_usd'])
 plt.title("Salary vs Experience")
 plt.xlabel('Years Experience')
 plt.ylabel('Salary')
-plt.savefig("Salary vs Experience.png")
+plt.savefig("images/Salary vs Experience.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 #Are high-demand jobs paid more?
@@ -170,7 +178,7 @@ plt.scatter(data['demand_score'],data['annual_salary_usd'])
 plt.title("Salary vs Demand Score")
 plt.xlabel('Demand Score')
 plt.ylabel('Salary')
-plt.savefig("Demand Score vs Salary.png")
+plt.savefig("images/Demand Score vs Salary.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 #Which roles pay the most?
@@ -182,7 +190,7 @@ plt.title("Average Salary by job title")
 plt.xlabel("Job Title")
 plt.ylabel("Annual_Salary")
 plt.tight_layout()
-plt.savefig("Average Salary by Job Title.png")
+plt.savefig("images/Average Salary by Job Title.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 #How much more do senior roles earn?
@@ -192,7 +200,7 @@ plt.title("Senior vs Non Senior Salary")
 plt.xlabel("is_senior")
 plt.ylabel("Annual_Salary")
 plt.tight_layout()
-plt.savefig("Senior vs non-senior salary.png")
+plt.savefig("images/Senior vs non-senior salary.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 #Do LLM jobs pay more?
@@ -202,7 +210,7 @@ plt.title("LLM vs Non LLM Role Salary")
 plt.xlabel("is_LLM_Role")
 plt.ylabel("Annual_salary")
 plt.tight_layout()
-plt.savefig("LLM vs Non-LLM Role Salary.png")
+plt.savefig("images/LLM vs Non-LLM Role Salary.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 #Which variables are strongly related?
@@ -212,7 +220,7 @@ plt.figure(figsize=(10,6))
 sns.heatmap(corr,annot=True,cmap='coolwarm')
 plt.title("Correlation Heatmap")
 plt.tight_layout()
-plt.savefig("Correlation Heatmap.png")
+plt.savefig("images/Correlation Heatmap.png",dpi=300,bbox_inches="tight")
 plt.show()
 
 
